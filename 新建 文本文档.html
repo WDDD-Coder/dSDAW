@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDG 音频播放器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 页面背景（保留康康赛场图+遮罩） */
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                url("kk.jpg") 
+                center center / cover no-repeat fixed;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        /* 核心：EDG主题播放按钮（仅修改这部分） */
+        .play-btn {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            /* EDG经典红黑配色 */
+            background: linear-gradient(135deg, #d9232e, #a81c24);
+            border: 3px solid #ffffff;
+            outline: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.15);
+            background: linear-gradient(135deg, #f0303d, #c4202a);
+            box-shadow: 0 12px 30px rgba(217, 35, 46, 0.7);
+        }
+
+        .play-btn i {
+            font-size: 35px;
+            color: #ffffff;
+            /* 播放图标改为白色，适配红底 */
+        }
+    </style>
+</head>
+<body>
+
+<!-- 音频播放按钮 -->
+<button class="play-btn" id="audioBtn">
+    <i>▶</i>
+</button>
+
+<!-- 音频元素（隐藏） -->
+<audio id="myAudio">
+    <source src="zmjjkk.mp3" type="audio/mpeg">
+    您的浏览器不支持音频播放
+
+
+<script>
+    const audio = document.getElementById('myAudio');
+    const audioBtn = document.getElementById('audioBtn');
+    const icon = audioBtn.querySelector('i');
+
+    audioBtn.addEventListener('click', function () {
+        if (audio.paused) {
+            audio.play();
+            icon.textContent = '⏸';
+        } else {
+            audio.pause();
+            icon.textContent = '▶';
+        }
+    });
+</script>
+
+</body>
+</html>
